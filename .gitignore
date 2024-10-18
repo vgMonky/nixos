@@ -1,0 +1,11 @@
+# Ignore the main configuration file
+configuration.nix
+
+# Ignore hardware-specific configuration
+hardware-configuration.nix
+
+# Ignore any .swp files (vim temporary files)
+*.swp
+
+# Ignore any files ending with a tilde (common backup file suffix)
+*~
