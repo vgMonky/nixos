@@ -67,24 +67,24 @@ in
       htop
       tree
       neofetch
-      ventoy-full
+      #ventoy-full
       wireguard-tools
       p7zip
       xclip
       alacritty
       scrot
       firefox
-      csound-qt
-      xfce.thunar
-      libreoffice-qt6-still
+      #csound-qt
+      #xfce.thunar
+      #libreoffice-qt6-still
       arandr
       vlc
       vscode
-      telegram-desktop
+      #telegram-desktop
       element-desktop
       qbittorrent-qt5
-      steam-run
-      atlauncher
+      #steam-run
+      #atlauncher
       (neovim.override {
         configure = {
           customRC = ''
