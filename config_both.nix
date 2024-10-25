@@ -63,6 +63,7 @@ in
       networkmanagerapplet
       git
       nodejs
+      nodePackages.firebase-tools
       vim
       htop
       tree
