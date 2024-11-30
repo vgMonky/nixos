@@ -23,8 +23,7 @@ in
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
-    layout = "us";
-    displayManager.defaultSession = "none+i3";
+    xkb.layout = "us";
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
@@ -36,8 +35,10 @@ in
         i3-resurrect-cmd
       ];
     };
-    libinput.enable = true;
   };
+
+  services.libinput.enable = true;
+  services.displayManager.defaultSession = "none+i3";
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -49,8 +50,11 @@ in
     pulse.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    cudaSupport = true;
+    permittedInsecurePackages = [ "qbittorrent-qt5-4.6.4" ];
+  };
 
   users.users.monky = {
     isNormalUser = true;
@@ -68,24 +72,31 @@ in
       htop
       tree
       neofetch
-      #ventoy-full
+      ventoy-full
       wireguard-tools
       p7zip
       xclip
       alacritty
       scrot
       firefox
-      #csound-qt
-      #xfce.thunar
-      #libreoffice-qt6-still
+      csound-qt
+      xfce.thunar
+      libreoffice-qt6-still
+      godot3
       arandr
       vlc
       vscode
-      #telegram-desktop
+      telegram-desktop
       element-desktop
       qbittorrent-qt5
-      #steam-run
-      #atlauncher
+      wesnoth
+      steam-run
+      atlauncher
+      (writeScriptBin "godot3-soft" ''
+        #!${bash}/bin/bash
+        LIBGL_ALWAYS_SOFTWARE=1 ${godot3}/bin/godot3 -e
+      '')
+
       (neovim.override {
         configure = {
           customRC = ''
@@ -129,6 +140,7 @@ in
     enable = true;
     wlr.enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    config.common.default = "*";
   };
 
   system.stateVersion = "24.05";
